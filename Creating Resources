@@ -1,0 +1,23 @@
+//reating an aws provider
+
+provider "aws" {
+  region = "us-east-1"
+  access_key = "Sectet key"
+  secret_key = "Wba3D0paGtuEhAOJ7s3w43eyojzJC5dC1CCrp9gh"
+}
+#creating VPC
+resource "aws_vpc" "First_vpc" {
+   cidr_block = "10.0.0.0/16"
+  tags = {
+    Name ="Production_VPC"
+  }
+}
+#creating a Subnet
+resource "aws_subnet" "subnet-1" {
+  vpc_id     = aws_vpc.First_vpc.id
+  cidr_block = "10.0.1.0/24"
+#Naming the Subnet
+  tags = {
+    Name = "Prod_subnet"
+  }
+}
